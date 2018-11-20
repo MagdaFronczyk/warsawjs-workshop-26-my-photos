@@ -30,11 +30,11 @@ function removeDetails() {
 
 function zoomPhoto(src) {
     removeFullPhoto();
-    const $area = document.querySelector(".app");
+    const $gallery = document.querySelector(".gallery");
     const $bigImage = document.createElement("img");
     $bigImage.classList.add("full");
     $bigImage.setAttribute("src", src.image);
-    $area.appendChild($bigImage);
+    $gallery.appendChild($bigImage);
     printInfo(src);
 }
 
@@ -45,23 +45,30 @@ function removeGallery() {
     }
 }
 
+function removeAlert() {
+    const $alert = document.querySelector(".alert");
+    if ($alert) {
+        $alert.remove();
+    }
+}
+
 function handleSearchForm(src) {
 
     const $input = document.createElement("input");
     const $button = document.createElement("button");
     const $area = document.querySelector(".app");
+    const $search = document.createElement("div");
     const $alert = document.createElement("p");
+    $alert.classList.add("alert");
 
     $alert.innerText = "Matches not found";
-    $alert.classList.add("alert");
-    $area.appendChild($input);
+    $area.appendChild($search);
+    $search.appendChild($input);
     $button.setAttribute("type", "submit");
     $button.innerText = "Search";
-    $area.appendChild($button);
+    $search.appendChild($button);
 
     $button.addEventListener("click", () => {
-
-        console.log(src);
 
         const value = $input.value.toLowerCase();
         const filteredPhotos = src.filter((el) => {
@@ -70,11 +77,12 @@ function handleSearchForm(src) {
             const tagSearch = el.tags.includes(value);
                 return titleSearch || authorSearch || tagSearch;
         });
-        console.log(filteredPhotos);
+
         if (filteredPhotos.length > 0 && value !== "") {
             render(filteredPhotos);
         } else {
-            $area.appendChild($alert);
+            $search.appendChild($alert);
+            removeGallery();
         }
     });
 }
@@ -87,16 +95,17 @@ function printInfo(src) {
 <p>${src.title}</p> 
 <p>${src.tags.map(e => `#${e}`).join(", ")}<p> 
 </div>`;
-    const $area = document.querySelector(".app");
+    const $gallery = document.querySelector(".gallery");
     const $container = document.createElement("div");
     $container.classList.add("details");
     $container.innerHTML = template;
-    $area.appendChild($container);
+    $gallery.appendChild($container);
 }
 
 function render(photos) {
     removeGallery();
     removeFullPhoto(photos[0]);
+    removeAlert();
 
     const $area = document.querySelector(".app");
     const $gallery = document.createElement("div");
