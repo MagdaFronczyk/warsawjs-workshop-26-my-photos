@@ -38,21 +38,51 @@ function zoomPhoto(src) {
     printInfo(src);
 }
 
+// function removeAlert() {
+//     const $alert = document.querySelector(".alert");
+//     if ($alert) {
+//        $alert.remove();
+//     }
+// }
+
+function removeGallery() {
+    const $gallery = document.querySelector(".gallery");
+    if ($gallery) {
+        $gallery.remove();
+    }
+}
+
 function handleSearchForm(src) {
+
+    // removeAlert();
+
     const $input = document.createElement("input");
     const $button = document.createElement("button");
     const $area = document.querySelector(".app");
+    const $alert = document.createElement("p");
+
+    $alert.innerText = "Matches not found";
+    $alert.classList.add("alert");
     $area.appendChild($input);
     $button.setAttribute("type", "submit");
     $button.innerText = "Search";
     $area.appendChild($button);
+
     $button.addEventListener("click", () => {
+
+        console.log(src);
+
         const value = $input.value;
         const filteredPhotos = src.filter((el) => {
-            return el.title.toLowerCase().match(value.toLowerCase());
+            return el.title.toLowerCase().match(value.toLowerCase())
+                || el.author.toLowerCase().match(value.toLowerCase())
         });
         console.log(filteredPhotos);
-        render(filteredPhotos);
+        if (filteredPhotos.length > 0 && value !== "") {
+            render(filteredPhotos);
+        } else {
+            $area.appendChild($alert);
+        }
     });
 }
 
@@ -72,15 +102,19 @@ function printInfo(src) {
 }
 
 function render(photos) {
+    removeGallery();
+
     const $area = document.querySelector(".app");
+    const $gallery = document.createElement("div");
+    $area.appendChild($gallery);
+    $gallery.classList.add("gallery");
     photos.forEach((photo) => {
         const $image = document.createElement("img");
         $image.setAttribute("src", photo.thumb);
         $image.addEventListener("click", () => {
             zoomPhoto(photo);
         });
-        $area.appendChild($image);
-
+        $gallery.appendChild($image);
     });
 }
 
