@@ -38,13 +38,6 @@ function zoomPhoto(src) {
     printInfo(src);
 }
 
-// function removeAlert() {
-//     const $alert = document.querySelector(".alert");
-//     if ($alert) {
-//        $alert.remove();
-//     }
-// }
-
 function removeGallery() {
     const $gallery = document.querySelector(".gallery");
     if ($gallery) {
@@ -53,8 +46,6 @@ function removeGallery() {
 }
 
 function handleSearchForm(src) {
-
-    // removeAlert();
 
     const $input = document.createElement("input");
     const $button = document.createElement("button");
@@ -72,10 +63,12 @@ function handleSearchForm(src) {
 
         console.log(src);
 
-        const value = $input.value;
+        const value = $input.value.toLowerCase();
         const filteredPhotos = src.filter((el) => {
-            return el.title.toLowerCase().match(value.toLowerCase())
-                || el.author.toLowerCase().match(value.toLowerCase())
+            const titleSearch = el.title.toLowerCase().match(value);
+            const authorSearch = el.author.toLowerCase().match(value);
+            const tagSearch = el.tags.includes(value);
+                return titleSearch || authorSearch || tagSearch;
         });
         console.log(filteredPhotos);
         if (filteredPhotos.length > 0 && value !== "") {
@@ -103,6 +96,7 @@ function printInfo(src) {
 
 function render(photos) {
     removeGallery();
+    removeFullPhoto(photos[0]);
 
     const $area = document.querySelector(".app");
     const $gallery = document.createElement("div");
