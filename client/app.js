@@ -36,6 +36,7 @@ function zoomPhoto(src) {
     $bigImage.setAttribute("src", src.image);
     $gallery.appendChild($bigImage);
     printInfo(src);
+    handleLike(src);
 }
 
 function removeGallery() {
@@ -93,7 +94,8 @@ function printInfo(src) {
 <div>
 <h2>${src.author}</h2> 
 <p>${src.title}</p> 
-<p>${src.tags.map(e => `#${e}`).join(", ")}<p> 
+<p>${src.tags.map(e => `#${e}`).join(", ")}<p>
+<p class="like">&hearts; <p>
 </div>`;
     const $gallery = document.querySelector(".gallery");
     const $container = document.createElement("div");
@@ -109,16 +111,38 @@ function render(photos) {
 
     const $area = document.querySelector(".app");
     const $gallery = document.createElement("div");
+    const $list = document.createElement("ul");
     $area.appendChild($gallery);
     $gallery.classList.add("gallery");
+    $gallery.appendChild($list);
     photos.forEach((photo) => {
         const $image = document.createElement("img");
+        const $listElement = document.createElement("li");
         $image.setAttribute("src", photo.thumb);
         $image.addEventListener("click", () => {
             zoomPhoto(photo);
         });
-        $gallery.appendChild($image);
+        $list.appendChild($listElement);
+        $listElement.appendChild($image);
     });
+}
+
+function handleLike() {
+    $like = document.querySelectorAll(".like");
+    console.log($like);
+
+    for (let el of $like ){
+        el.addEventListener("click", function () {
+            this.classList.toggle("yes");
+            this.style.color = this.classList.contains("yes") ? "red" : "black";
+        });
+    }
+
+    // $like.addEventListener("click", function () {
+    //     this.classList.toggle("yes");
+    //     this.style.color = this.classList.contains("yes") ? "red" : "black";
+    // });
+
 }
 
 document.addEventListener("DOMContentLoaded", setup);
