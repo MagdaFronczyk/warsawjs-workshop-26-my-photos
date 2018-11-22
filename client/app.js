@@ -128,20 +128,13 @@ function render(photos) {
 }
 
 function handleLike() {
-    $like = document.querySelectorAll(".like");
+    $like = document.querySelector(".like");
     console.log($like);
 
-    for (let el of $like ){
-        el.addEventListener("click", function () {
-            this.classList.toggle("yes");
-            this.style.color = this.classList.contains("yes") ? "red" : "black";
-        });
-    }
+    $like.addEventListener("click", function () {
+        this.classList.toggle("yes");
 
-    // $like.addEventListener("click", function () {
-    //     this.classList.toggle("yes");
-    //     this.style.color = this.classList.contains("yes") ? "red" : "black";
-    // });
+    });
 
 }
 
