@@ -78,7 +78,7 @@ function handleSearchForm(src) {
                 return titleSearch || authorSearch || tagSearch;
         });
 
-        if (filteredPhotos.length > 0 && value !== "") {
+        if (filteredPhotos.length) {
             render(filteredPhotos);
         } else {
             $search.appendChild($alert);
