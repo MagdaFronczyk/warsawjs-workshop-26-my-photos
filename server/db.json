@@ -1,95 +1,96 @@
 {
-    "photos": [
-        {
-            "id": 10,
-            "author": "Piotr Kowalski",
-            "title": "My phone",
-            "thumb": "https://picsum.photos/100/50/?image=160",
-            "image": "https://picsum.photos/650/400/?image=160",
-            "tags": [
-                "phone",
-                "table"
-            ],
-            "isFavorite": true
-        },
-        {
-            "id": 20,
-            "author": "Katarzyna Grabowska",
-            "title": "My favorite animal",
-            "thumb": "https://picsum.photos/100/50/?image=200",
-            "image": "https://picsum.photos/650/400/?image=200",
-            "tags": [
-                "animal",
-                "orange"
-            ],
-            "isFavorite": true
-        },
-        {
-            "id": 30,
-            "author": "Piotr Kowalski",
-            "title": "My office",
-            "thumb": "https://picsum.photos/100/50/?image=201",
-            "image": "https://picsum.photos/650/400/?image=201",
-            "tags": [
-                "table",
-                "glasses",
-                "computer"
-            ],
-            "isFavorite": true
-        },
-        {
-            "id": 40,
-            "author": "Katarzyna Grabowska",
-            "title": "",
-            "thumb": "https://picsum.photos/100/50/?image=202",
-            "image": "https://picsum.photos/650/400/?image=202",
-            "tags": [],
-            "isFavorite": false
-        },
-        {
-            "id": 50,
-            "author": "Piotr Kowalski",
-            "title": "",
-            "thumb": "https://picsum.photos/100/50/?image=203",
-            "image": "https://picsum.photos/650/400/?image=203",
-            "tags": [],
-            "isFavorite": false
-        },
-        {
-            "id": 60,
-            "author": "Katarzyna Grabowska",
-            "title": "",
-            "thumb": "https://picsum.photos/100/50/?image=204",
-            "image": "https://picsum.photos/650/400/?image=204",
-            "tags": [],
-            "isFavorite": false
-        },
-        {
-            "id": 70,
-            "author": "Piotr Kowalski",
-            "title": "",
-            "thumb": "https://picsum.photos/100/50/?image=55",
-            "image": "https://picsum.photos/650/400/?image=55",
-            "tags": [],
-            "isFavorite": false
-        },
-        {
-            "id": 80,
-            "author": "Katarzyna Grabowska",
-            "title": "",
-            "thumb": "https://picsum.photos/100/50/?image=206",
-            "image": "https://picsum.photos/650/400/?image=206",
-            "tags": [],
-            "isFavorite": true
-        },
-        {
-            "id": 90,
-            "author": "Piotr Kowalski",
-            "title": "",
-            "thumb": "https://picsum.photos/100/50/?image=107",
-            "image": "https://picsum.photos/650/400/?image=107",
-            "tags": [],
-            "isFavorite": false
-        }
-    ]
+  "photos": [
+    {
+      "id": 10,
+      "author": "Piotr Kowalski",
+      "title": "My phone",
+      "thumb": "https://picsum.photos/100/50/?image=160",
+      "image": "https://picsum.photos/650/400/?image=160",
+      "tags": [
+        "phone",
+        "table"
+      ],
+      "isFavorite": true,
+      "isFavourite": false
+    },
+    {
+      "id": 20,
+      "author": "Katarzyna Grabowska",
+      "title": "My favorite animal",
+      "thumb": "https://picsum.photos/100/50/?image=200",
+      "image": "https://picsum.photos/650/400/?image=200",
+      "tags": [
+        "animal",
+        "orange"
+      ],
+      "isFavorite": false
+    },
+    {
+      "id": 30,
+      "author": "Piotr Kowalski",
+      "title": "My office",
+      "thumb": "https://picsum.photos/100/50/?image=201",
+      "image": "https://picsum.photos/650/400/?image=201",
+      "tags": [
+        "table",
+        "glasses",
+        "computer"
+      ],
+      "isFavorite": true
+    },
+    {
+      "id": 40,
+      "author": "Katarzyna Grabowska",
+      "title": "",
+      "thumb": "https://picsum.photos/100/50/?image=202",
+      "image": "https://picsum.photos/650/400/?image=202",
+      "tags": [],
+      "isFavorite": false
+    },
+    {
+      "id": 50,
+      "author": "Piotr Kowalski",
+      "title": "",
+      "thumb": "https://picsum.photos/100/50/?image=203",
+      "image": "https://picsum.photos/650/400/?image=203",
+      "tags": [],
+      "isFavorite": true
+    },
+    {
+      "id": 60,
+      "author": "Katarzyna Grabowska",
+      "title": "",
+      "thumb": "https://picsum.photos/100/50/?image=204",
+      "image": "https://picsum.photos/650/400/?image=204",
+      "tags": [],
+      "isFavorite": true
+    },
+    {
+      "id": 70,
+      "author": "Piotr Kowalski",
+      "title": "",
+      "thumb": "https://picsum.photos/100/50/?image=55",
+      "image": "https://picsum.photos/650/400/?image=55",
+      "tags": [],
+      "isFavorite": true
+    },
+    {
+      "id": 80,
+      "author": "Katarzyna Grabowska",
+      "title": "",
+      "thumb": "https://picsum.photos/100/50/?image=206",
+      "image": "https://picsum.photos/650/400/?image=206",
+      "tags": [],
+      "isFavorite": true
+    },
+    {
+      "id": 90,
+      "author": "Piotr Kowalski",
+      "title": "",
+      "thumb": "https://picsum.photos/100/50/?image=107",
+      "image": "https://picsum.photos/650/400/?image=107",
+      "tags": [],
+      "isFavorite": true
+    }
+  ]
 }

@@ -11,6 +11,7 @@ function setup() {
             render(photos);
             handleSearchForm(photos);
             zoomPhoto(photos[0]);
+            showLikedPhotos(photos);
         });
 }
 
@@ -59,6 +60,7 @@ function handleSearchForm(src) {
     const $button = document.createElement("button");
     const $area = document.querySelector(".app");
     const $search = document.createElement("div");
+    $search.classList.add("search");
     const $alert = document.createElement("p");
     $alert.classList.add("alert");
 
@@ -76,7 +78,7 @@ function handleSearchForm(src) {
             const titleSearch = el.title.toLowerCase().match(value);
             const authorSearch = el.author.toLowerCase().match(value);
             const tagSearch = el.tags.includes(value);
-                return titleSearch || authorSearch || tagSearch;
+            return titleSearch || authorSearch || tagSearch;
         });
 
         if (filteredPhotos.length) {
@@ -116,6 +118,7 @@ function render(photos) {
     $gallery.classList.add("gallery");
     $gallery.appendChild($list);
     photos.forEach((photo) => {
+        console.log(photos);
         const $image = document.createElement("img");
         const $listElement = document.createElement("li");
         $image.setAttribute("src", photo.thumb);
@@ -127,14 +130,37 @@ function render(photos) {
     });
 }
 
-function handleLike() {
+function handleLike(photos) {
     $like = document.querySelector(".like");
-    console.log($like);
 
     $like.addEventListener("click", function () {
         this.classList.toggle("yes");
 
+        const isFavorite = $like.classList.contains("yes"); //tworzymy zmienną isFavourite, która w zależności od tego czy element posiada klasę "yes" ma wartość true bądź false
+        photos.isFavorite = isFavorite; // updatujemy obiekt i jeko klucz isFavorite o wartość true/false
+
+        fetch(`/photos/${photos.id}`, { // pobieram zdjęcie o konkretnym id
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({isFavorite}) // co się dzieje tu?
+        });
+
     });
+}
+
+function showLikedPhotos(photos) {
+    const $likeButton = document.createElement("button");
+    $likeButton.innerText = "Show favourite";
+    const $search = document.querySelector(".search");
+    $search.appendChild($likeButton);
+
+    const likedPhotos = photos.filter(e => e.isFavorite);
+
+    $likeButton.addEventListener("click", function () {
+        render(likedPhotos);
+    })
 
 }
 
