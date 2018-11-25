@@ -8,15 +8,15 @@ function fetchPhotos(url) {
 function setup() {
     fetchPhotos("/photos")
         .then((photos) => {
-            render(photos);
             handleSearchForm(photos);
+            render(photos);
             zoomPhoto(photos[0]);
             showLikedPhotos(photos);
         });
 }
 
 function removeFullPhoto() {
-    const $full = document.querySelector(".full");
+    const $full = document.querySelector(".zoomed");
     if ($full) {
         $full.remove();
     }
@@ -33,9 +33,12 @@ function zoomPhoto(src) {
     removeFullPhoto();
     const $gallery = document.querySelector(".gallery");
     const $bigImage = document.createElement("img");
+    const $zoomed = document.createElement("div");
+    $zoomed.classList.add("zoomed");
     $bigImage.classList.add("full");
     $bigImage.setAttribute("src", src.image);
-    $gallery.appendChild($bigImage);
+    $gallery.appendChild($zoomed);
+    $zoomed.appendChild($bigImage);
     printInfo(src);
     handleLike(src);
 }
@@ -56,6 +59,7 @@ function removeAlert() {
 
 function handleSearchForm(src) {
 
+    const $form = document.createElement("form");
     const $input = document.createElement("input");
     const $button = document.createElement("button");
     const $area = document.querySelector(".app");
@@ -63,16 +67,15 @@ function handleSearchForm(src) {
     $search.classList.add("search");
     const $alert = document.createElement("p");
     $alert.classList.add("alert");
-
     $alert.innerText = "Matches not found";
     $area.appendChild($search);
-    $search.appendChild($input);
-    $button.setAttribute("type", "submit");
+    $search.appendChild($form);
+    $form.appendChild($input);
     $button.innerText = "Search";
-    $search.appendChild($button);
+    $form.appendChild($button);
 
-    $button.addEventListener("click", () => {
-
+    $button.addEventListener("click", (e) => {
+        e.preventDefault();
         const value = $input.value.toLowerCase();
         const filteredPhotos = src.filter((el) => {
             const titleSearch = el.title.toLowerCase().match(value);
@@ -93,17 +96,16 @@ function handleSearchForm(src) {
 function printInfo(src) {
     removeDetails();
     const template = `
-<div>
-<h2>${src.author}</h2> 
-<p>${src.title}</p> 
-<p>${src.tags.map(e => `#${e}`).join(", ")}<p>
+<h2 class="details_author">${src.author}</h2> 
+<p class="details_title">"${src.title}"</p> 
+<p class="details_tags">${src.tags.map(e => `#${e}`).join(", ")}<p>
 <p class="like">&hearts; <p>
-</div>`;
-    const $gallery = document.querySelector(".gallery");
+`;
+    const $zoomed = document.querySelector(".zoomed");
     const $container = document.createElement("div");
     $container.classList.add("details");
     $container.innerHTML = template;
-    $gallery.appendChild($container);
+    $zoomed.appendChild($container);
 }
 
 function render(photos) {
@@ -114,13 +116,14 @@ function render(photos) {
     const $area = document.querySelector(".app");
     const $gallery = document.createElement("div");
     const $list = document.createElement("ul");
+    $list.classList.add("list");
     $area.appendChild($gallery);
     $gallery.classList.add("gallery");
     $gallery.appendChild($list);
     photos.forEach((photo) => {
-        console.log(photos);
         const $image = document.createElement("img");
         const $listElement = document.createElement("li");
+        $listElement.classList.add("list_element");
         $image.setAttribute("src", photo.thumb);
         $image.addEventListener("click", () => {
             zoomPhoto(photo);
@@ -144,7 +147,7 @@ function handleLike(photos) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({isFavorite}) // co się dzieje tu?
+            body: JSON.stringify({isFavorite})
         });
 
     });

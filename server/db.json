@@ -10,7 +10,7 @@
         "phone",
         "table"
       ],
-      "isFavorite": true,
+      "isFavorite": false,
       "isFavourite": false
     },
     {
@@ -90,7 +90,7 @@
       "thumb": "https://picsum.photos/100/50/?image=107",
       "image": "https://picsum.photos/650/400/?image=107",
       "tags": [],
-      "isFavorite": true
+      "isFavorite": false
     }
   ]
 }
