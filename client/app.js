@@ -10,8 +10,8 @@ function setup() {
         .then((photos) => {
             handleSearchForm(photos);
             render(photos);
-            zoomPhoto(photos[0]);
             showLikedPhotos(photos);
+            zoomPhoto(photos[0]);
         });
 }
 
@@ -72,6 +72,7 @@ function handleSearchForm(src) {
     $search.appendChild($form);
     $form.appendChild($input);
     $button.innerText = "Search";
+    $button.classList.add("search_button");
     $form.appendChild($button);
 
     $button.addEventListener("click", (e) => {
@@ -142,6 +143,8 @@ function handleLike(photos) {
         const isFavorite = $like.classList.contains("yes"); //tworzymy zmienną isFavourite, która w zależności od tego czy element posiada klasę "yes" ma wartość true bądź false
         photos.isFavorite = isFavorite; // updatujemy obiekt i jeko klucz isFavorite o wartość true/false
 
+        console.log(isFavorite);
+
         fetch(`/photos/${photos.id}`, { // pobieram zdjęcie o konkretnym id
             method: 'PATCH',
             headers: {
@@ -162,6 +165,7 @@ function showLikedPhotos(photos) {
     const likedPhotos = photos.filter(e => e.isFavorite);
 
     $likeButton.addEventListener("click", function () {
+        console.log(likedPhotos);
         render(likedPhotos);
     })
 

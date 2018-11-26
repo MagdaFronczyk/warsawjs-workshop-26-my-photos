@@ -16,16 +16,19 @@ body {
 
 .gallery {
     display: flex;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 25px 0 25px 0;
+    height: 500px;
 }
 
 .list {
     flex-basis: 30%;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .list_element {
     list-style: none;
+    display: inline;
 }
 
 .zoomed {
@@ -61,3 +64,12 @@ body {
 .details_tags {
     font-size: 12px;
 }
+
+.search {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 25px 0 25px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
